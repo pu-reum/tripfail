@@ -1,61 +1,221 @@
 @charset "UTF-8";
 
-/*  */
+* {
+	box-sizing: border-box !important;
+	transition: ease all 0.5s;
+}
 
-/*  Global CSS ------------------------------------------ */
-*{
-	margin:0;
-	padding:0;
+html {
+	scroll-behavior: smooth;
 }
-a{
-	text-decoration: none;
-	color:black;
+
+body {
+	color: #666666;
+	font-size: 14px;
+	line-height: 1.80857;
+	font-weight: normal;
+	overflow-x: hidden;
+	font-family: 'Poppins', sans-serif;
 }
-ul,ol{
+
+a {
+	color: #1f1f1f;
+	text-decoration: none !important;
+	outline: none !important;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: 0;
+	font-weight: normal;
+	position: relative;
+	padding: 0 0 10px 0;
+	font-weight: normal;
+	line-height: normal;
+	color: #111111;
+	margin: 0
+}
+
+h1 {
+	font-size: 24px
+}
+
+h2 {
+	font-size: 22px
+}
+
+h3 {
+	font-size: 18px
+}
+
+h4 {
+	font-size: 16px
+}
+
+h5 {
+	font-size: 14px
+}
+
+h6 {
+	font-size: 13px
+}
+
+*, *::after, *::before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: #212121;
+	text-decoration: none !important;
+	opacity: 1
+}
+
+button:focus {
+	outline: none;
+}
+
+ul, li, ol {
+	margin: 0px;
+	padding: 0px;
 	list-style: none;
 }
 
-/*  Header CSS ------------------------------------------ */
-header{
-	width: 900px;
-	height: 100px;
-	background: red;
-	margin: 0 auto;
+p {
+	margin: 20px;
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 24px;
 }
 
-header > ul{
-	width:700px;
-	margin:0 auto;
+a {
+	color: #222222;
+	text-decoration: none;
+	outline: none !important;
 }
-header > ul > li{
-	float: left;
-	padding: 10px;
+
+a, .btn {
+	text-decoration: none !important;
+	outline: none !important;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+:focus {
+	outline: 0;
+}
+
+button {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+/* header section start */
+#home > a > img{
+	width: 100px;
+}
+header{
+    width: 100%;
+    float: left;
+    background-image: url(../images/trip.jpg);
+    height: auto;
+    background-size: 100%;
+    padding: 0px;
+}
+
+#home {
+    width: 100%;
+    float: left;
+    text-align: center;
+    padding: 20px 0px 50px 0px;
+}
+
+.menu_main {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+.menu_main > ul > li > a {
+	color: black;
+}
+
+.menu_main ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: inline-flex;
+}
+
+.menu_main li {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    border-radius: 40px;
+}
+
+.menu_main li a {
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.menu_main li a:hover {
+    color: #ffffff;
+    background-color: #2b2278;
+}
+
+nav > ul {
+	float: right;
+}
+
+nav > ul > li{
+	display: inline;
+}
+
+#search {
+	border-style: solid;
+	border-width: 2px;
+	width: 500px;
+	padding: 5px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row-reverse;
 }
 /*  Section CSS ------------------------------------------ */
-section{
-	width: 900px;
-	height: 600px;
-	background: gray;
-	margin: 0 auto;
-}
-section > aside{
-	float:left;
-}
-section > #left_aside{
-	width: 100px;
-	height: 600px;
-	background: green;
-}
-section > #center_aside{
-	width: 798px;
-	height: 598px;
-	background: white; 
+section>#center_aside {
+	width: 100%;
+	background: white;
 	border: 1px solid blue;
 }
 
 /*  Footer CSS ------------------------------------------ */
-footer{
-	width: 900px;
+footer {
+	width: 100%;
 	height: 50px;
 	background: black;
 	margin: 0 auto;

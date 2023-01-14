@@ -2,23 +2,51 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>일상에서구조</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>일상에서 구조</title>
+
+<!-- bootstrap css -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <script></script>
 </head>
 <body>
 	<header>
-		<ul>
-			<li><a href="#">hi</a></li>
-		</ul>
+		<nav>
+			<ul th:if="${session.logincust == null}">
+				<li><a class="btn_main active" href="#">로그인</a></li>
+				<li><a class="btn_main active" href="#">회원가입</a></li>
+			</ul>
+			<ul th:if="${session.logincust != null}">
+				<li><a class="btn_main active" href="#">로그아웃</a></li>
+				<li><a class="btn_main active" href="#">내정보</a></li>
+			</ul>
+		</nav>
+		<div id="home">
+			<a th:href="@{/index}"><img th:src="@{/images/home.jpg}"></a>
+		</div>
+		<div class="menu_main">
+			<ul>
+				<li><a th:href="@{/index}">여행</a></li>
+				<li><a th:href="@{/index}">추천코스</a></li>
+				<li><a th:href="@{/index}">게시판</a></li>
+				<li><a th:href="@{/index}">1:1문의</a></li>
+			</ul>
+		</div>
+
+		<form id="search">
+			<button id="btn">search</button>
+			<input type="text" placeholder="검색어를 입력해주세요.">
+		</form>
 	</header>
-	
+
+
 	<section>
 		<aside id="center_aside" th:include="${center} ? ${center} : center"></aside>
 	</section>
-	
-	<footer>
-	
-	</footer>
+
+
+	<footer></footer>
 </body>
 </html>
