@@ -1,52 +1,225 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>일상에서 구조</title>
+    <meta charset="utf-8">
+    <title>일상에서 구조</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-<!-- bootstrap css -->
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/bootstrap.min.css}">
-<!-- style css -->
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-<script></script>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/bb5cacded7.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-	<header>
-		<nav>
-			<ul th:if="${session.logincust == null}">
-				<li><a class="btn_main active" href="#">로그인</a></li>
-				<li><a class="btn_main active" href="#">회원가입</a></li>
-			</ul>
-			<ul th:if="${session.logincust != null}">
-				<li><a class="btn_main active" href="#">로그아웃</a></li>
-				<li><a class="btn_main active" href="#">내정보</a></li>
-			</ul>
-		</nav>
-		<div id="home">
-			<a th:href="@{/index}"><img th:src="@{/images/home.jpg}"></a>
-		</div>
-		<div class="menu_main">
-			<ul>
-				<li><a th:href="@{/index}">여행</a></li>
-				<li><a th:href="@{/index}">추천코스</a></li>
-				<li><a th:href="@{/index}">게시판</a></li>
-				<li><a th:href="@{/index}">1:1문의</a></li>
-			</ul>
-		</div>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i></i> </p>
+                        <p> </p>
+                        <p><i></i> </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center" th:if="${session.logincust == null}">
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" th:href="@{/regist}">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                        <a class="text-primary pl-3" th:href="@{/login}">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center" th:if="${session.logincust != null}">
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
 
-		<form id="search">
-			<button id="btn">search</button>
-			<input type="text" placeholder="검색어를 입력해주세요.">
-		</form>
-	</header>
 
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a th:href="@{/}" class="navbar-brand">  <!-- 로고버튼 링크 수정! -->
+                    <h1 class="m-0 text-primary"><span class="text-dark">일상에서</span>구조</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-4" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                    
+                    	<a th:href="@{/notice}" class="nav-item nav-link">공지</a> <!-- 게시판 링크 수정! -->
+                    	<div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">여행</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a th:href="@{/trip/trip}" class="dropdown-item">여행지</a>
+                                <a th:href="@{/trip/food}" class="dropdown-item">맛집</a>
+                                <a th:href="@{/trip/festival}" class="dropdown-item">축제</a>
+                            </div>
+                        </div>
+                        <a th:href="@{/course}" class="nav-item nav-link">추천코스</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a th:href="@{/mypage/wishlist}" class="dropdown-item">위시리스트</a>
+                                <a th:href="@{/mypage/calendar}" class="dropdown-item">일정</a>
+                                <a th:href="@{/mypage/useredit}" class="dropdown-item">회원정보수정</a>
+                                <a th:href="@{/mypage/question}" class="dropdown-item">1:1문의</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
 
-	<section>
+    
+
+    <section>
 		<aside id="center_aside" th:include="${center} ? ${center} : center"></aside>
 	</section>
 
 
-	<footer></footer>
+   
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
+                </a>
+                <p>Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p>
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
+                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Usefull Links</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
+                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
+                <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Newsletter</h6>
+                <div class="w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-3">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">일상에서구조</a>. All Rights Reserved.</a>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -11,4 +11,9 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/index")
+	public String main() {
+		return "index";
+	}
+	
 }
