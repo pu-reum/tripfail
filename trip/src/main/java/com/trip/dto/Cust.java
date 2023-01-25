@@ -1,5 +1,7 @@
 package com.trip.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,12 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Cust {
-	private String pid;
-	//일단 대충 적어놨습니당..
+	private String custid;
+	private String custpwd;
+	private String custname;
+	private String custnick;
+	private String custphone;
+	private String custemail;
+	private Date rdate;
 	
 }
