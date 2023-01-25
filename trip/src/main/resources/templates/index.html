@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link th:href="@{img/favicon.png}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -82,9 +82,9 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">t
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a th:href="@{/}" class="navbar-brand">  <!-- 로고버튼 링크 수정! -->
+                <a th:href="@{/}" class="navbar-brand">  
                     <h1 class="m-0 text-primary"><span class="text-dark">일상에서</span>구조</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -93,7 +93,7 @@
                 <div class="collapse navbar-collapse justify-content-between px-4" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                     
-                    	<a th:href="@{/notice}" class="nav-item nav-link">공지</a> <!-- 게시판 링크 수정! -->
+                    	<a th:href="@{/notice}" class="nav-item nav-link">공지</a> 
                     	<div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">여행</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -103,13 +103,13 @@
                             </div>
                         </div>
                         <a th:href="@{/board}" class="nav-item nav-link">게시판</a>
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown" ><!--  th:if="${session.logincust != null}"-->
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a th:href="@{/mypage/wishlist}" class="dropdown-item">위시리스트</a>
                                 <a th:href="@{/mypage/calendar}" class="dropdown-item">일정</a>
                                 <a th:href="@{/mypage/useredit}" class="dropdown-item">회원정보수정</a>
-                                <a th:href="@{/mypage/question}" class="dropdown-item">1:1문의</a>
+                                <a th:href="@{/mypage/inquiry}" class="dropdown-item">1:1문의</a>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-3">
-            <div class="col-lg-5 col-md-6 mb-5">
+            <div class="col-lg-11 col-md-6 mb-5">
                 <a href="" class="navbar-brand">
                     <h1 class="text-primary"><span class="text-white">일상에서</span>구조</h1>
                 </a>

@@ -22,11 +22,18 @@ public class MypageController {
 		return "index";
 	}
 	
-	@RequestMapping("/question")
-	public String question(Model model) {
-		model.addAttribute("center", dir+"question");
+	@RequestMapping("/inquiry")
+	public String inquirylist(Model model) {
+		model.addAttribute("center", dir+"inquiry");
 		return "index";
 	}
+	
+	@RequestMapping("/inquiry/write")
+	public String inquirywrite(Model model) {
+		model.addAttribute("center",dir+"inquirywrite");
+		return "index";
+	}
+
 	
 	@RequestMapping("/wishlist")
 	public String wishlist(Model model) {
