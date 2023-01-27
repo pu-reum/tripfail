@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trip.mapper.BoardMapper">
+	 
+	<select id="selectBoardList" resultType="Board">
+		SELECT b.postid, b.custid, b.title, b.content, b.hit, b.rdate, b.catename
+		FROM board b
+		INNER JOIN category c ON b.cateid = c.cateid
+	</select>
+	
+	<select id="selectBoard" parameterType="Integer" resultType="Board">
+		SELECT  postid, cateid, custid, title, hit, content, rdate FROM board WHERE postid=#{postid}
+	</select>
+	<!-- <select id="categoryEnum" resultType="Board">
+		SELECT postid, custid, title, content, hit, rdate,
+		CASE WHEN cateid='1' THEN '여행지'
+		WHEN cateid='2' THEN '맛집'
+		WHEN cateid='3' THEN '축제'
+		ELSE '기타'
+		END AS 카테고리
+		FROM board
+	</select>-->	
+	
+	<insert id="insertBoard" parameterType="Board">
+		 INSERT INTO board(postid, cateid, custid, title, content, rdate) VALUES(NULL, 
+		 							(CASE WHEN cateid='1' THEN '여행지'
+									WHEN cateid='2' THEN '맛집'
+                                    WHEN cateid='3' THEN '축제'
+                                    ELSE '기타' END), 
+                                    #{custid},#{title},#{content}, NOW()) 
+	</insert>
+	
+	<update id="updateBoard" parameterType="Board">
+		UPDATE board SET cateid=#{cateid}, title=#{title}, content=#{content} WHERE postid=#{postid} AND custid=#{custid}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM board WHERE postid=#{postid} AND custid=#{custid}
+	</delete> 
+ </mapper>
