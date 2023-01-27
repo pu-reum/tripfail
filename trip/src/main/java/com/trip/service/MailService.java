@@ -1,7 +1,5 @@
 package com.trip.service;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,13 +11,13 @@ public class MailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-	public void sendMail(String toEmail, String body) {
+	public void sendMail(String toEmail, String body, String subject) {
 		
 		SimpleMailMessage simpleMessage=new SimpleMailMessage();
 		
 		simpleMessage.setFrom("tripimfo123@gmail.com");
 		simpleMessage.setTo(toEmail);
-		simpleMessage.setSubject("회원가입 인증 번호 입니다.");
+		simpleMessage.setSubject(subject);
 		simpleMessage.setText(body);
 		
 		javaMailSender.send(simpleMessage);

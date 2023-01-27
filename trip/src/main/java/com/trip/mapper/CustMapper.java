@@ -10,5 +10,7 @@ import com.trip.frame.MyMapper;
 @Mapper
 public interface CustMapper extends MyMapper<String, Cust> {
 	public Cust select2(String k) throws Exception;
-	public void nickremove(Cust v) throws Exception;
+	public Cust select3(String k) throws Exception;
+	public Cust login(String k, String j) throws Exception;
+	public Cust searchPwd(String k, String j) throws Exception;
 }

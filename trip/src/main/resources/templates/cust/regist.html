@@ -11,6 +11,7 @@
 </style>
 
 <script>
+	var number=null;
 	var check=false;
 	var check1=true;
 	var check2=true;
@@ -46,6 +47,8 @@
 			$('#nickspan').text('Not Available');
 			check=false;
 		}else if(!check3){
+			$('#email-confirm-span').attr('style','color:red;');
+			$('#email-confirm-span').text('Email authentication required');
 			check=false;
 		}else{
 			check=true;
@@ -174,23 +177,38 @@
 		};
 	};
 	
-	function emailconfirm(data){
-		var dap=prompt('인증번호를 입력해주세요');
-		if(dap==data){
-			alert("인증 확인되었습니다.");
+	// email 인증번호
+	function emailNumber(data){
+		if(data!=0){
+			number=data;
+			$('#emailspan').attr('style','color:blue;');
+        	$('#emailspan').text('Available');
+		}else{
+			$('#emailspan').attr('style','color:red;');
+        	$('#emailspan').text('Not Available');
+        	check3=false;
+		}
+		
+	}
+	
+	// email 인증번호 확인
+	function checkEmailNumber(data){
+		if(data=1){
 			$('#email-confirm-span').attr('style','color:blue;');
 			$('#email-confirm-span').text('Email Authentication Completed');
 			$('#email').attr('readonly', 'readonly');
 			check3=true;
 		}else{
-			alert("인증 실패하였습니다.");
+			$('#email-confirm-span').attr('style','color:red;');
+			$('#email-confirm-span').text('Email authentication failed');
+			check3=false;
 		}
-		
 	}
 	
 
 	$(document).ready(function(){
 		
+		// id 중복검사
 		$('#id').keyup(function(){
 			var id=$(this).val();
 			$.ajax({
@@ -209,7 +227,7 @@
 			
 		});
 		
-		
+		// 닉네임 중복검사
 		$('#nick').keyup(function(){
 			var nick=$(this).val();
 			$.ajax({
@@ -228,18 +246,33 @@
 			
 		});
 		
+		// 이메일 인증번호 보내기
 		$('#email-confirm').click(function(){
 			var email=$('#email').val();
-			console.log("hi");
+			$('#anumber').attr('style','display:inline');
 			
 			$.ajax({
 				url:'[[@{/checkemail}]]',
 				data:{'email':email},
 				success:function(data){
-					emailconfirm(data);
+					emailNumber(data);
+					
 				}
 			});
 			
+		});
+		
+		// 이메일 인증번호 확인
+		$('#anumber').keyup(function(){
+			var anumber=$(this).val();
+			
+			$.ajax({
+				url:'[[@{/checkanumber}]]',
+				data:{'anumber':anumber,'number':number},
+				success:function(data){
+					checkEmailNumber(data)
+				}
+			});
 		});
 		
 	});
@@ -284,6 +317,9 @@
                                 <input type="email" name="custemail" id="email" placeholder="Your Email"/>
                                 <span id="emailspan"></span>
                             </div>
+                             <div class="form-group" >
+                                <input type="text" name="anumber" id="anumber" placeholder="email authentication number" style="display:none;"/>
+                            </div>
                             <div class="form-group">
                                 <span id="email-confirm-span"></span>
                             </div>
@@ -296,7 +332,7 @@
                     <div class="signup-image" align="center">
                         <figure>
                         	<img th:src="@{/img/regist.jpg}">
-                        	<a href="#" class="signup-image-link">I am already member</a>
+                        	<a href="#loginModal" data-toggle="modal" class="signup-image-link" style="color:red;">I am already member</a>
                         </figure>
                         
                     </div>

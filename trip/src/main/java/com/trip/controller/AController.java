@@ -57,24 +57,43 @@ public class AController {
 	
 	@RequestMapping("/checkemail")
 	public Object checkemail(String email) {
+		Cust cust=null;
 		String code;
+		String subject="일상에서구조 사이트의 회원가입 인증 번호 입니다.";
 		StringBuffer key=new StringBuffer();
 		Random rnd=new Random();
 		for(int i=0;i<6;i++) {
 			key.append((rnd.nextInt(10)));
 		}
-	
 		try {
-			mservice.sendMail(email, key.toString());
-			code=key.toString();
-			return code;
-		}catch(Exception e) {
+			cust=service.get3(email);
+			if(cust==null) {
+				mservice.sendMail(email, key.toString(), subject);
+				code=key.toString();
+				return code;
+			}else {
+				return 0;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
 		
-		
 	}
+	
+	@RequestMapping("/checkanumber")
+	public Object checkanumber(String anumber, String number) {
+		if(anumber==number) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+
+	
+	
+	
 }
 
 

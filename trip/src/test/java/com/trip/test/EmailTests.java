@@ -14,7 +14,7 @@ class EmailTests {
 
 	@Test
 	void contextLoads() {
-		service.sendMail("cmo1049@naver.com", "dd");
+		service.sendMail("cmo1049@naver.com", "dd", "");
 	}
 
 }

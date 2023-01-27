@@ -22,7 +22,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select2" parameterType="String" resultType="Cust">
 		SELECT * FROM cust WHERE custnick=#{custnick}
 	</select>
-	<select id="nickremove" parameterType="Cust">
-		UPDATE cust SET custnick="" WHERE custid=#{custid}
+	<select id="select3" parameterType="String" resultType="Cust">
+		SELECT * FROM cust WHERE custemail=#{custemail}
 	</select>
+	<select id="login" parameterType="String" resultType="Cust">
+		SELECT * FROM cust WHERE custid=#{param1} AND custpwd=#{param2}
+	</select>
+	<select id="searchPwd" parameterType="String" resultType="Cust">
+		SELECT * FROM cust WHERE custid=#{param1} AND custemail=#{param2}
+	</select>
+	
 </mapper>

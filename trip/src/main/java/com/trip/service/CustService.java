@@ -32,11 +32,6 @@ public class CustService implements MyService<String, Cust>{
 		mapper.update(v);
 		
 	}
-	
-	public void nickremove(Cust v) throws Exception {
-		mapper.nickremove(v);
-		
-	}
 
 	@Override
 	public Cust get(String k) throws Exception {
@@ -51,5 +46,21 @@ public class CustService implements MyService<String, Cust>{
 	public List<Cust> get() throws Exception {
 		return mapper.selectall();
 	}
+	
+	
+	public Cust get3(String k) throws Exception {
+		return mapper.select3(k);
+	}
 
+	public Cust login(String k, String j) throws Exception {
+		return mapper.login(k,j);
+	}
+	
+	public Cust searchPwd(String k, String j) throws Exception {
+		return mapper.searchPwd(k,j);
+	}
+	
+	
+	
+	
 }

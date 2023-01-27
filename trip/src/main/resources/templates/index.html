@@ -36,8 +36,8 @@
                         <p><i></i> </p>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center" th:if="${session.logincust == null}">
+                <div class="col-lg-6 text-center text-lg-right" th:if="${session.logincust == null}">
+                    <div class="d-inline-flex align-items-center" >
                         <a class="text-primary px-3" href="">
                             <i></i>
                         </a>
@@ -50,13 +50,13 @@
                         <a class="text-primary px-3" th:href="@{/regist}">
                             <i class="fa-regular fa-user"></i>
                         </a>
-                        <a class="text-primary pl-3" th:href="@{/login}">
+                        <a class="text-primary pl-3" href="#loginModal" data-toggle="modal">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center" th:if="${session.logincust != null}">
+                <div class="col-lg-6 text-center text-lg-right" th:if="${session.logincust != null}">
+                    <div class="d-inline-flex align-items-center" >
                         <a class="text-primary px-3" href="">
                             <i></i>
                         </a>
@@ -69,7 +69,7 @@
                         <a class="text-primary px-3" href="">
                             <i></i>
                         </a>
-                        <a class="text-primary px-3" href="">
+                        <a class="text-primary px-3" th:href="@{/logout}" >
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </a>
                     </div>
@@ -78,7 +78,9 @@
         </div>
     </div>
     <!-- Topbar End -->
+<style>
 
+</style>
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
@@ -103,12 +105,12 @@
                             </div>
                         </div>
                         <a th:href="@{/board}" class="nav-item nav-link">게시판</a>
-                        <div class="nav-item dropdown" ><!--  th:if="${session.logincust != null}"-->
+                        <div class="nav-item dropdown" th:if="${session.logincust != null}">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">마이페이지</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a th:href="@{/mypage/wishlist}" class="dropdown-item">위시리스트</a>
                                 <a th:href="@{/mypage/calendar}" class="dropdown-item">일정</a>
-                                <a th:href="@{/#}" class="dropdown-item">회원정보수정</a>
+                                <a th:href="@{/useredit(id=${session.logincust.custid})}" class="dropdown-item">회원정보수정</a>
                                 <a th:href="@{/mypage/inquiry}" class="dropdown-item">1:1문의</a>
                             </div>
                         </div>
@@ -199,6 +201,118 @@
         </div>
     </div>
     <!-- Footer End -->
+    
+<!--------------------------------------------- modal --------------------------------->
+    <!-- login -->
+<div id="loginModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="avatar">
+					
+				</div>				
+				<h4 class="modal-title">Login</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="/loginimpl" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" id="id" name="custid" placeholder="id" required="required">		
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="pass" name="custpwd" placeholder="Password" required="required">	
+					</div>        
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#idModal" data-toggle="modal">Forgot id?</a>
+				<a href="#pwdModal" data-toggle="modal">Forgot Password?</a>
+			</div>
+		</div>
+	</div>
+</div>     
+
+	<!-- 아이디 찾기 -->
+<div id="idModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="avatar">
+					
+				</div>				
+				<h4 class="modal-title">Search ID</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="/serchid" method="post">
+					<div class="form-group">
+						<input type="email" class="form-control" id="email" name="custemail" placeholder="email" required="required">
+						<span>아이디를 보내드립니다.</span>		
+					</div>        
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn" id="chearchid" onclick="searchid()">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> 
+	
+	<!-- 비밀번호 찾기 -->
+<div id="pwdModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="avatar">
+					
+				</div>				
+				<h4 class="modal-title">Search PASSWORD</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="/serchpwd" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" id="id" name="custid" placeholder="id" required="required">		
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="email" name="custemail" placeholder="email" required="required">
+						<span>임시 비밀번호를 보내드립니다.</span>	
+					</div>        
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn" id="chearchid" onclick="searchid()">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> 
+	
+	<!-- modal js -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+	<link th:href="@{/css/loginstyle.css}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			$(document).ready(function() {
+		        let message = "[[${msg}]]";
+		        if (message != "") {
+		            alert(message);
+		            message="";
+		        }
+		    })
+		    
+		    
+		 
+		    
+		});
+	
+	</script>
+<!----------------------------------------------------------------------------------------------------------------->    	
 
 
     <!-- Back to Top -->
