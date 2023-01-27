@@ -21,18 +21,6 @@ public class MypageController {
 		model.addAttribute("center", dir+"useredit");
 		return "index";
 	}
-	
-	@RequestMapping("/inquiry")
-	public String inquirylist(Model model) {
-		model.addAttribute("center", dir+"inquiry");
-		return "index";
-	}
-	
-	@RequestMapping("/inquiry/write")
-	public String inquirywrite(Model model) {
-		model.addAttribute("center",dir+"inquirywrite");
-		return "index";
-	}
 
 	
 	@RequestMapping("/wishlist")

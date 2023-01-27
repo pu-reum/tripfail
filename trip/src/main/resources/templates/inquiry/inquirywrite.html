@@ -1,14 +1,24 @@
+<style>
+#send{
+	color: ffffff;
+	border:1px solid green;
+}
+#send:hover{
+	color:green;
+}
+</style>
 <!-- contact section start -->
 <div class="contact_section layout_padding" style="margin-bottom:500px;">
-	<form class="container" action="/board/writeo" method="post">
+	
 		<div class="text-center">
 			<h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">마이페이지</h6>
 			<h1>1:1 문의</h1>
 		</div>
+		
+		<form class="container" th:action="@{/inquiry/inquirywriteok}" method="post">
+		
 		<div class="email_text">
-			<div class="form-group">
-				<input type="hidden" class="email-bt" placeholder="아이디" name="custid">
-			</div>
+			
 			<div class="form-group">
 				<input type="text" class="email-bt" placeholder="제목"
 					name="icate">
@@ -22,7 +32,7 @@
 			</div>
 			
 			<div class="send_btn">
-				<a href="#">SEND</a>
+				<button type="submit" id="send">SEND</button>
 			</div>
 		</div>
 	</form>
