@@ -16,7 +16,7 @@ class InsertTests {
 	@Test
 	void contextLoads() {
 		
-		Cust cust=new Cust("user3", "111111", "지은", "J", null, "user3@naver.com", null);
+		Cust cust=new Cust("user4", "111111", "지은", "J", null, "user3@naver.com", null);
 		try {
 			service.register(cust);
 			System.out.println("ok");

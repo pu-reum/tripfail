@@ -68,7 +68,7 @@ public class CustController {
 			 	session.setAttribute("logincust", cust);
 			 	model.addAttribute("msg", "회원정보수정되었습니다.");
 			 }catch (Exception e) { 
-				 model.addAttribute("center", "회원정보 수정 실패하였습니다.");
+				 model.addAttribute("msg", "회원정보 수정 실패하였습니다.");
 				 e.printStackTrace(); 
 				 e.getStackTrace();
 			 }
