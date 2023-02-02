@@ -15,6 +15,8 @@ public interface BoardMapper{
 	List<Board> selectBoardList() throws Exception;
 	//글 보기
 	Board selectBoard(int postid) throws Exception;
+	//조회수
+	void updateHitCount(int postid) throws Exception;
 	//글 쓰기
 	void insertBoard(Board board) throws Exception;
 	//글 수정

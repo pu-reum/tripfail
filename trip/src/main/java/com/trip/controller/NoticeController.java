@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trip.dto.Criteria;
 import com.trip.dto.Notice;
+import com.trip.dto.Page;
 import com.trip.service.NoticeService;
 
 @Controller
@@ -22,11 +24,12 @@ public class NoticeController {
 	
 	//공지 글 리스트
 	@RequestMapping("")
-	public String notice(Model model) throws Exception {
+	public String notice(Criteria criteria, Model model) throws Exception {
+		//log.info("list");
 		
-		List<Notice> list = ns.selectNoticeList();
+		List<Notice> list = ns.selectNoticeList(criteria);
 		model.addAttribute("list", list);
-		
+		model.addAttribute("pageMarker", new Page(ns.getTotalData(), 5, criteria));
 		model.addAttribute("center", dir+"notice");
 		return "index";
 	}

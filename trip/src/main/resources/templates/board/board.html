@@ -84,6 +84,11 @@
 #pagination{
 	margin:auto;
 }
+#word-cut{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
 </style>
 </head>
 <body>
@@ -147,7 +152,7 @@
             <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
                 <td th:text="${list.postid}"></td>
                 <td th:text="${list.catename}"></td>
-				<td class="title"><a th:href="@{/board/boardview}" th:attrappend="href=${list.postid}" th:text="${list.title}"></a></td>
+				<td class="title" id="word-cut"><a th:text="${list.title}" th:href="@{/board/boardview(postid=${list.postid})}"></a></td>
 				<td th:text="${list.custid}"></td>
 				<td th:text="${list.hit}"></td>
 				<td th:text="${list.rdate}"></td>

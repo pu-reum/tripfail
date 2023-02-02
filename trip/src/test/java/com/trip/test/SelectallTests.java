@@ -21,7 +21,7 @@ class SelectallTests {
 	void contextLoads() {
 		List<Notice> objs=null;
 		try {
-			objs=service.selectNoticeList();
+			objs=service.selectNoticeList(null);
 			for(Notice obj:objs) {
 				System.out.println(obj);
 			};

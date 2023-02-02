@@ -25,16 +25,26 @@ public class Board {
 	private LocalDate rdate;
 	private String catename;
 	
-	
-	public Board(int postid, int cateid, String custid, String title, String content, LocalDate rdate, String catename) {
+	public Board(int postid, String custid, String title, String content, int hit, LocalDate rdate, String catename) {
 		super();
 		this.postid = postid;
-		this.cateid = cateid;
 		this.custid = custid;
 		this.title = title;
 		this.content = content;
+		this.hit = hit;
 		this.rdate = rdate;
-		this.catename=catename;
+		this.catename = catename;
 	}
+
+	public Board(int postid, String custid, String content, int highpostid, LocalDate rdate) {
+		super();
+		this.postid = postid;
+		this.custid = custid;
+		this.content = content;
+		this.highpostid = highpostid;
+		this.rdate = rdate;
+	}
+	
+	
 	
 }

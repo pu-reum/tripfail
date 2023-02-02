@@ -14,7 +14,9 @@ public class Criteria {
 	private String searchWord;
 	
 	// 1 페이지에 5개씩 보여줌
-	public Criteria() {this(1,5);}
+	public Criteria() {
+		this(1,5);
+	}
 	
 	public Criteria(int pageNum, int total) {
 		this.pageNum=pageNum;

@@ -32,8 +32,10 @@ public class BoardService{
 
 	//글 상세 보기
 	public Board selectBoard(int postid) throws Exception {
+		bmp.updateHitCount(postid);
 		
-		return bmp.selectBoard(postid);
+		Board board = bmp.selectBoard(postid);
+		return board;
 	}
 
 	//글 목록
