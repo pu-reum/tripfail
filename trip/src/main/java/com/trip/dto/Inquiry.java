@@ -2,6 +2,8 @@ package com.trip.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +24,6 @@ public class Inquiry {
 	private String file;
 	private int iprocess;
 	private Date rdate;
+	
+	private MultipartFile img;
 }

@@ -12,7 +12,7 @@ import com.trip.dto.Inquiry;
 public interface InquiryMapper{
 
 	//전체 글 목록
-	List<Inquiry> selectInquiryList() throws Exception;
+	List<Inquiry> selectInquiryList(String custid) throws Exception;
 	//글 보기
 	Inquiry selectInquiry(int inquiryid) throws Exception;
 	//글 쓰기
@@ -20,5 +20,5 @@ public interface InquiryMapper{
 	//글 수정
 	void updateInquiry(Inquiry inquiry) throws Exception;
 	//글 삭제
-	void deleteInquiry(int inquiryid) throws Exception;
+	void deleteInquiry(int inquiryid, String custid) throws Exception;
 }

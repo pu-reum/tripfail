@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO inquiry VALUES (null, #{custid}, #{icate}, #{icontent}, #{file}, null, NOW())
 	</insert>
 	
-	<delete id="deleteInquiry" parameterType="Integer">
-		DELETE FROM inquiry WHERE inquiryid=#{inquiryid} 
+	<delete id="deleteInquiry">
+		DELETE FROM inquiry WHERE inquiryid=#{inquiryid} AND custid=#{custid}
 	</delete>
 	
 	<update id="updateInquiry" parameterType="Inquiry">
@@ -21,6 +21,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectInquiryList" resultType="Inquiry">
-		SELECT * FROM inquiry WHERE custid=#{custid}
+		SELECT * FROM inquiry WHERE custid=#{custid} ORDER BY inquiryid desc
 	</select>
 </mapper>

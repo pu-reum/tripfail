@@ -7,6 +7,29 @@
 	color:green;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		
+		//제목과 본문 입력 안 했을 떄
+		$("#send").click(function(){
+			var title=$('input[name=icate]').val().trim();
+			var content=$('#comment').val().trim();
+			if((content == '' || content == null) && (title=='' || title==null)){
+				alert("제목과 내용을 입력하세요");
+				return false;
+			}else if(content == '' || content == null){
+				alert("내용을 입력하세요");
+				return false;
+			}else if(title=='' || title==null){
+				alert("제목을 입력하세요");
+				return false;
+			}
+		});
+		
+	});
+</script>
 <!-- contact section start -->
 <div class="contact_section layout_padding" style="margin-bottom:500px;">
 	
@@ -15,7 +38,7 @@
 			<h1>1:1 문의</h1>
 		</div>
 		
-		<form class="container" th:action="@{/inquiry/inquirywriteok}" method="post">
+		<form class="container" th:action="@{/inquiry/inquirywriteok}" method="post" enctype="multipart/form-data">
 		
 		<div class="email_text">
 			
@@ -32,7 +55,7 @@
 			</div>
 			
 			<div class="send_btn">
-				<button type="submit" id="send">SEND</button>
+				<button type="submit" id="send">문의등록</button>
 			</div>
 		</div>
 	</form>

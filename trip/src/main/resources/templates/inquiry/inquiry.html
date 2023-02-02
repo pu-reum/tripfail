@@ -108,11 +108,11 @@
 				<tbody>
 					<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
 						<td th:text="${list.inquiryid}"></td>
-						<td class="title"><a th:href="@{/inquiry/inquiryview}"
-							th:attrappend="href=${list.inquiryid}" th:text="${list.icate}"></a></td>
+						<td class="title"><a th:href="@{/inquiry/inquiryview(inquiryid=${list.inquiryid})}"
+							 th:text="${list.icate}"></a></td>
 						<td th:text="${list.custid}"></td>
 						<td th:text="${list.iprocess}"></td>
-						<td th:text="${list.rdate}"></td>
+						<td th:text="${#dates.format(list.rdate, 'yyyy-MM-dd')}"></td>
 					</tr>
 					<tr th:unless="${#lists.size(list)} > 0">
 						<td colspan="4">조회된 결과가 없습니다.</td>

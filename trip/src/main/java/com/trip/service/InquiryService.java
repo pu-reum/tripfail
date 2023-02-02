@@ -20,8 +20,8 @@ public class InquiryService{
 	}
 
 	//글 삭제
-	public void deleteInquiry(int inquiryid) throws Exception {
-		im.deleteInquiry(inquiryid);
+	public void deleteInquiry(int inquiryid,String custid) throws Exception {
+		im.deleteInquiry(inquiryid,custid);
 	}
 
 	//글 수정
@@ -36,8 +36,8 @@ public class InquiryService{
 	}
 
 	//글 목록
-	public List<Inquiry> selectInquiryList() throws Exception {
-		return im.selectInquiryList();
+	public List<Inquiry> selectInquiryList(String custid) throws Exception {
+		return im.selectInquiryList(custid);
 	}
 
 
