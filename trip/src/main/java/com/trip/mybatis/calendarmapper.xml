@@ -22,7 +22,7 @@
 			planenddate = #{planenddate}
 		WHERE planid = #{planid}
 	</update>
-	<delete id="delete" parameterType="Integer">
+	<delete id="deleteByPlanid" parameterType="Integer">
 		DELETE FROM plan
 		WHERE planid=#{planid}
 	</delete>
